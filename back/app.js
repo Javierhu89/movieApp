@@ -7,8 +7,6 @@ const port = 3000;
 const firebase = require ('firebase/app');
 const cookieParser = require ('cookie-parser');
 app.use(cookieParser());
-require ('firebase/auth');
-require ('firebase/firestore');
 
 app.use (express.static('public')); // Hacemos public que se pueda ver
 
