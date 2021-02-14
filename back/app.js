@@ -5,15 +5,10 @@ let methodOverride = require("method-override");
 app.use(methodOverride("_method"));
 const port = 3000;
 const firebase = require ('firebase/app');
-const autenticacion = require ('./modules/autenticacion');
 const cookieParser = require ('cookie-parser');
 app.use(cookieParser());
 require ('firebase/auth');
 require ('firebase/firestore');
-
-// Initialize Firebase
-firebase.initializeApp(autenticacion.firebaseConfig)
-
 
 app.use (express.static('public')); // Hacemos public que se pueda ver
 
