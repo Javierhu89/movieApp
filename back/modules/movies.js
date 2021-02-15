@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const db = require('../model/db');
 const mysql = require('../model/dbmysql');
 ObjectID = require('mongodb').ObjectID;
-const APIKEY = process.env.APIKEY;
+const APIKEY = process.env.APIKEYS;
 // Ver si estas 6 líneas van aquí
 const express = require ('express');
 const Llave = process.env.LLAVE;
@@ -44,7 +44,6 @@ exports.getFilm = (req, res) => {
     fetch(`https://www.omdbapi.com/?s=${pelicula}&apikey=${APIKEY}`)
     .then(peli => peli.json())
     .then(async data => {
-        console.log(data)
         if(data.Response=="False"){ // Si no hay nada en la API
             let movies = await db.readMovies();
             for (let i=0; i<movies.length; i++){
@@ -109,7 +108,6 @@ exports.getMovies = async (req, res) => {
                 Resultados.push(movies);
             }
         }
-        console.log(Resultados)
         res.status(200).render('movies', {Details: Resultados, Longitud: Resultados.length, Rol: perfil[0].rol}) // añadir rol: perfil tiene si es usuario o admin
     } else {
     let movies = await db.readMovies();
@@ -257,7 +255,6 @@ exports.postFavoritos = async (req, res) => {
                 email = data.email;
                 idUser = data.id1;
               }});
-    console.log(email, idUser, idSQL); 
     let leerFavorito = await mysql.leerFavorito(idSQL,email);
     if(leerFavorito.length == 0){   
         let insertarFavorito = await mysql.insertFavorito(idSQL,email);

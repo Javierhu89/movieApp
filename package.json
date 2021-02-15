@@ -8,7 +8,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./back/app.js",
+    "start": "nodemon ./back/app.js",
     "web": "npm start"
   },
   "repository": {
